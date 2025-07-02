@@ -1,0 +1,10 @@
+enum CarType {
+  ECONOMY = 'ECONOMY',
+  COMPACT = 'COMPACT',
+  INTERMEDIATE = 'INTERMEDIATE',
+  STANDARD = 'STANDARD',
+  FULLSIZE = 'FULLSIZE',
+  PREMIUM = 'PREMIUM',
+  LUXURY = 'LUXURY'
+}
+export default CarType;
