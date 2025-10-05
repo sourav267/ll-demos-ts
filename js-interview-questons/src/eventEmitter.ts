@@ -12,9 +12,8 @@ export default class JsEventEmitter implements IEventEmitter {
         // on the prototype (such as `.toString`).
         this._events = Object.create(null);
     }
-
     on(eventName: string, listener: Function): IEventEmitter {
-        if (!Object.hasOwn(this._events, eventName)) {
+        if (!Object.prototype.hasOwnProperty.call(this._events, eventName)) {
             this._events[eventName] = [];
         }
 
@@ -24,7 +23,7 @@ export default class JsEventEmitter implements IEventEmitter {
 
     off(eventName: string, listener: Function): IEventEmitter {
         // Ignore non-existing eventNames.
-        if (!Object.hasOwn(this._events, eventName)) {
+        if (!Object.prototype.hasOwnProperty.call(this._events, eventName)) {
             return this;
         }
 
@@ -46,7 +45,7 @@ export default class JsEventEmitter implements IEventEmitter {
     emit(eventName: string, ...args: Array<any>): boolean {
         // Return false for non-existing eventNames or events without listeners.
         if (
-            !Object.hasOwn(this._events, eventName) ||
+            !Object.prototype.hasOwnProperty.call(this._events, eventName) ||
             this._events[eventName].length === 0
         ) {
             return false;
