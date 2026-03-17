@@ -20,14 +20,25 @@ LRUCache.prototype.put = function (key, value) {
     }
     this.cache.set(key, value);
 };
-t
+
+LRUCache.prototype.delete = function (key) {
+    this.cache.delete(key);
+};
+
+LRUCache.prototype.displayCache = function () {
+    console.log("Current Cache State:");
+    return [...this.cache.entries()];
+}
 // Example usage:
 const lruCache = new LRUCache(2);
 lruCache.put(1, 1);
 lruCache.put(2, 2);
+lruCache.put(3, 3); // Output: 1
+console.log(lruCache.displayCache()); // Output: [[2, 2], [1, 1]]
 console.log(lruCache.get(1)); // Output: 1
 lruCache.put(3, 3); // Evicts key 2
 console.log(lruCache.get(2)); // Output: -1 (not found)
 lruCache.put(4, 4); // Evicts key 3
 console.log(lruCache.get(3)); // Output: -1 (not found)
 console.log(lruCache.get(4)); // Output: 4
+console.log(lruCache.displayCache()); // Output: [[4, 4], [1, 1]]
